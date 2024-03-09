@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TicTacToe"
+             xmlns:libvm ="clr-namespace:TicTacToe.Lib.ViewModel;assembly=TicTacToe.Lib"
+             x:Class="TicTacToe.GamePage"
+             x:DataType="{x:Type libvm:GameModel}"
+             Title="Tic Tac Toe">
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            
+            <HorizontalStackLayout>
+                <Label
+                    x:Name="labelPlayer1"
+                    Text="{Binding XScore, StringFormat='Player 1 (X):  {0}'}"
+                    Style="{StaticResource Key=tttScore}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="StartAndExpand" />
+                <Label
+                    x:Name="labelPlayer2"
+                    Text="{Binding OScore, StringFormat='Player 2 (O):  {0}'}"
+                    Style="{StaticResource Key=tttScore}"
+                    HorizontalOptions="End"
+                    VerticalOptions="StartAndExpand" />
+            </HorizontalStackLayout>
+            <Label
+                x:Name="labelStatus"
+                Text="{Binding Message}"
+                Style="{StaticResource Key=tttMessage}"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="StartAndExpand" />
+            <CollectionView
+                ItemsSource="{Binding Cells}"
+                BackgroundColor="{StaticResource Gray300}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Vertical"
+                        Span="3" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type libvm:Cell}">
+                        <Button
+                            x:Name="{Binding Name}"
+                            Text="{Binding TextValue}"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type libvm:GameModel}}, Path=OnCellPressedCommand}"
+                            CommandParameter="{Binding}"
+                            Style="{StaticResource Key=tttSquare}" 
+                            IsEnabled="{Binding IsStillValid}"/>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <HorizontalStackLayout
+                Padding="20"
+                Spacing="20"
+                HorizontalOptions="CenterAndExpand">
+                <Button
+                    x:Name="reset"
+                    Text="Reset Scores"
+                    Command="{Binding OnResetClickedCommand}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start" />
+                <Button
+                    x:Name="new"
+                    Text="New Game"
+                    Command="{Binding OnNewGameClickedCommand}"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start" />
+            </HorizontalStackLayout>
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

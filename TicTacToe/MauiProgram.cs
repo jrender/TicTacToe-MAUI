@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using TicTacToe.Lib.ViewModel;
 
 namespace TicTacToe
 {
@@ -13,7 +14,11 @@ namespace TicTacToe
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                })
+                .Services
+                .AddSingleton<GameModel>()
+                .AddSingleton<Lib.ViewModel.Cell>()
+                .AddSingleton<GamePage>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

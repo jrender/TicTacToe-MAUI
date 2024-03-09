@@ -4,6 +4,7 @@
     {
         int count = 0;
 
+
         public MainPage()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
+       
     }
 
 }

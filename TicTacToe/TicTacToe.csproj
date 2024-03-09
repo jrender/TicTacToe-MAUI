@@ -24,7 +24,7 @@
 		<ApplicationTitle>TicTacToe</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.tictactoe</ApplicationId>
+		<ApplicationId>com.jakerendersoftware.tictactoe</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -60,6 +60,22 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\TicTacToe.Lib\TicTacToe.Lib.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="GamePage.xaml.cs">
+	    <DependentUpon>GamePage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="GamePage.xaml">
+	    <Generator></Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
