@@ -10,8 +10,9 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            
-            <HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                Spacing="30">
                 <Label
                     x:Name="labelPlayer1"
                     Text="{Binding XScore, StringFormat='Player 1 (X):  {0}'}"
@@ -32,11 +33,15 @@
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="StartAndExpand" />
             <CollectionView
+                MaximumWidthRequest="340"
+                MaximumHeightRequest="360"
                 ItemsSource="{Binding Cells}"
                 BackgroundColor="{StaticResource Gray300}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
                         Orientation="Vertical"
+                        HorizontalItemSpacing="5"
+                        VerticalItemSpacing="5"
                         Span="3" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
@@ -47,11 +52,13 @@
                             Command="{Binding Source={RelativeSource AncestorType={x:Type libvm:GameModel}}, Path=OnCellPressedCommand}"
                             CommandParameter="{Binding}"
                             Style="{StaticResource Key=tttSquare}" 
+                            CornerRadius="1"
                             IsEnabled="{Binding IsStillValid}"/>
                         
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
             <HorizontalStackLayout
                 Padding="20"
                 Spacing="20"

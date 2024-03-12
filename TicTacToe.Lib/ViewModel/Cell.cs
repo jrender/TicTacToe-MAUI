@@ -20,9 +20,10 @@ namespace TicTacToe.Lib.ViewModel
         {
             get
             {
-                return $"{XPosition}{YPosition}";
+                return GetAccessibleName();
             }
         }
+
 
         private CellValue _cellValue;
         private string _textValue;
@@ -51,7 +52,8 @@ namespace TicTacToe.Lib.ViewModel
             set { SetProperty(ref _isStillValid, value); }
             get { return _isStillValid; }
         }
-
+        public bool IsHorizontalLineVisible { get; set; }
+        public bool IsVerticalLineVisible { get; set; }
         private CellState _cellState;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -68,6 +70,8 @@ namespace TicTacToe.Lib.ViewModel
             _textValue = "";
             XPosition = xPosition;
             YPosition = yPosition;
+            IsHorizontalLineVisible = xPosition == 1;
+            IsVerticalLineVisible = yPosition == 1;
             _cellState = CellState.Empty;
             _cellValue = CellValue.Empty;
             TextValue = SetTextValue();
@@ -127,6 +131,26 @@ namespace TicTacToe.Lib.ViewModel
         #endregion
         #region Private Methods
 
+        private string GetAccessibleName()
+        {
+            var XName = XPosition switch
+            {
+                0 => "Top",
+                1 => "Middle",
+                2 => "Bottom",
+                _ => throw new ArgumentOutOfRangeException("Invalid option for XPosition")
+            };
+            var YName = YPosition switch
+            {
+                0 => "Left",
+                1 => "Middle",
+                2 => "Right",
+                _ => throw new ArgumentOutOfRangeException("Invalid option for YPosition")
+            };
+
+            return XPosition == 1 && YPosition == 1 ? "Center" : $"{XName} {YName}";
+
+        }
 
         private bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
         {
