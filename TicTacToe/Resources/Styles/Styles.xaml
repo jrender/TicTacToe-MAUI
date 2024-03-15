@@ -396,6 +396,7 @@
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
     </Style>
 
+    <!-- TODO Set theme colors here. -->
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
         <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
         <Setter Property="Shell.ForegroundColor" Value="{OnPlatform WinUI={StaticResource Primary}, Default={StaticResource White}}" />
@@ -449,8 +450,8 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="{StaticResource White}" />
-                            <Setter Property="BackgroundColor" Value="{StaticResource DarkGreen}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource tttCellWinText}, Dark={StaticResource tttCellWinTextDark}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource tttCellWin}, Dark={StaticResource tttCellWinDark}}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Pressed">
