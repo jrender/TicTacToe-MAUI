@@ -396,6 +396,7 @@
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
     </Style>
 
+    <!-- TODO Set theme colors here. -->
     <Style TargetType="Shell" ApplyToDerivedTypes="True">
         <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
         <Setter Property="Shell.ForegroundColor" Value="{OnPlatform WinUI={StaticResource Primary}, Default={StaticResource White}}" />
@@ -439,16 +440,18 @@
         <Setter Property="BorderWidth" Value="0"/>
         <Setter Property="CornerRadius" Value="0"/>
         <Setter Property="Padding" Value="10,10"/>
-        <Setter Property="MinimumHeightRequest" Value="100"/>
-        <Setter Property="MinimumWidthRequest" Value="44"/>
+        <Setter Property="MinimumHeightRequest" Value="110"/>
+        <Setter Property="MinimumWidthRequest" Value="110"/>
+        <Setter Property="MaximumHeightRequest" Value="110"/>
+        <Setter Property="MaximumWidthRequest" Value="110"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="{StaticResource White}" />
-                            <Setter Property="BackgroundColor" Value="{StaticResource DarkGreen}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource tttCellWinText}, Dark={StaticResource tttCellWinTextDark}}" />
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource tttCellWin}, Dark={StaticResource tttCellWinDark}}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Pressed">
@@ -467,6 +470,9 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
-
+    <Style TargetType="Line" x:Key="tttLine">
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource PrimaryDark}, Dark={StaticResource Primary}}" />
+        <Setter Property="StrokeThickness" Value="2"/>
+    </Style>
 
 </ResourceDictionary>
